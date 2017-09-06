@@ -16,6 +16,18 @@ module.exports = merge(common, {
     hot: true
   },
 
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
+      }
+    ]
+  },
+
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {

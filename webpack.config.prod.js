@@ -4,6 +4,7 @@ const webpack = require('webpack')
 const merge = require('webpack-merge')
 
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
 
 const common = require('./webpack.config.common.js')
 
@@ -12,6 +13,18 @@ module.exports = merge(common, {
 
   output: {
     filename: '[name].[chunkhash].js'
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ExtractTextWebpackPlugin.extract({
+          fallback: 'style-loader',
+          use: [ 'css-loader' ]
+        })
+      }
+    ]
   },
 
   plugins: [
@@ -24,9 +37,13 @@ module.exports = merge(common, {
       parallel: true
     }),
 
+    new ExtractTextWebpackPlugin({
+      filename: '[name].[contenthash].css'
+    }),
+
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify('development')
+        'NODE_ENV': JSON.stringify('production')
       }
     })
   ]
