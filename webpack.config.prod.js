@@ -18,10 +18,13 @@ module.exports = merge(common, {
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.s?css$/,
         use: ExtractTextWebpackPlugin.extract({
           fallback: 'style-loader',
-          use: [ 'css-loader' ]
+          use: [
+            'css-loader',
+            'sass-loader'
+          ]
         })
       }
     ]

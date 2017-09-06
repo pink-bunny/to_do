@@ -1,6 +1,6 @@
 import React from 'react'
 
-import 'Application.css'
+import 'Application.scss'
 
 const Application = () =>
   <div>Hello world!!!</div>
