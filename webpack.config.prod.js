@@ -9,7 +9,7 @@ const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
 const common = require('./webpack.config.common.js')
 
 module.exports = merge(common, {
-  devtool: 'cheap-module-source-map',
+  devtool: 'source-map',
 
   output: {
     filename: '[name].[chunkhash].js'
