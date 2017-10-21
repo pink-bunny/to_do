@@ -42,7 +42,7 @@ module.exports = merge(common, {
     new ExtractTextWebpackPlugin({
       filename: '[name].[contenthash].css'
     }),
-    
+
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('production')
