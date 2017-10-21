@@ -21,7 +21,8 @@ module.exports = {
       path.resolve(__dirname, 'node_modules')
     ],
     extensions: [
-      '.js', '.jsx'
+      '.js',
+      '.jsx'
     ]
   },
 
@@ -47,8 +48,9 @@ module.exports = {
 
     new webpack.optimize.CommonsChunkPlugin({ name: 'vendor' }),
     new webpack.optimize.CommonsChunkPlugin({ name: 'runtime' }),
-
-    new webpack.HashedModuleIdsPlugin(),
-    new webpack.optimize.ModuleConcatenationPlugin()
+    
+    new webpack.optimize.ModuleConcatenationPlugin(),
+    
+    new webpack.HashedModuleIdsPlugin()
   ]
 }
