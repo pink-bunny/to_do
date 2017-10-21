@@ -1,15 +1,27 @@
 /* eslint-env node */
 
 import React from 'react'
-import { render } from 'react-dom'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
 
 import Application from './Application'
 
-render(<Application />, document.getElementById('app'))
+import store from './redux-store'
+
+const render = Application => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <Application />
+    </Provider>,
+    
+    document.getElementById('app')
+  )
+}
+
+render(Application)
 
 if (module.hot) {
   module.hot.accept('./Application', () => {
-    const NextApplication = require('./Application').default
-    render(<NextApplication />, document.getElementById('app'))
+    render(require('./Application').default)
   })
 }

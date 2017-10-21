@@ -1,4 +1,5 @@
 module.exports = {
+  'parser': 'babel-eslint',
   'env': {
     'es6': true,
     'browser': true
@@ -21,7 +22,8 @@ module.exports = {
   'rules': {
     'indent': [
       'error',
-      2
+      2,
+      { "SwitchCase": 1 }
     ],
     'linebreak-style': [
       'error',
@@ -34,6 +36,10 @@ module.exports = {
     'semi': [
       'error',
       'never'
+    ],
+    'eol-last': [
+      'error',
+      'always'
     ]
   }
 }

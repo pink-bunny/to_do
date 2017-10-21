@@ -11,7 +11,15 @@ module.exports = {
 
     vendor: [
       'react',
-      'react-dom'
+      'react-dom',
+      'prop-types',
+
+      'redux',
+      'react-redux',
+      'redux-multi',
+      'redux-thunk',
+      'redux-logger',
+      'redux-devtools-extension'
     ]
   },
 
@@ -48,9 +56,9 @@ module.exports = {
 
     new webpack.optimize.CommonsChunkPlugin({ name: 'vendor' }),
     new webpack.optimize.CommonsChunkPlugin({ name: 'runtime' }),
-    
+
     new webpack.optimize.ModuleConcatenationPlugin(),
-    
+
     new webpack.HashedModuleIdsPlugin()
   ]
 }
