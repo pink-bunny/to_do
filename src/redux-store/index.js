@@ -7,17 +7,23 @@ import thunkMiddleware from 'redux-thunk'
 import { applyMiddleware, createStore } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { createLogger as createLoggerMiddleware } from 'redux-logger'
+import { routerMiddleware as createRouterMiddleware } from 'react-router-redux'
 
 import reducer from './reducer'
 
 const isDev = process.env.NODE_ENV === 'development'
 
-const configureStore = () => {
+const configureStore = history => {
   const loggerMiddleware =
     createLoggerMiddleware({
       collapsed: true,
       timestamp: false
     })
+
+  const routerMiddleware =
+    createRouterMiddleware(
+      history
+    )
 
   const devMiddleware = isDev
     ? [loggerMiddleware]
@@ -26,6 +32,8 @@ const configureStore = () => {
   const middlewares = applyMiddleware(
     multiMiddleware,
     thunkMiddleware,
+    routerMiddleware,
+
     ...devMiddleware
   )
 
@@ -42,4 +50,4 @@ const configureStore = () => {
   return store
 }
 
-export default configureStore()
+export { configureStore }

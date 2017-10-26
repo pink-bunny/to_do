@@ -3,17 +3,24 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
+import { createHashHistory } from 'history'
+import { ConnectedRouter as Router } from 'react-router-redux'
 
 import Application from './Application'
 
-import store from './redux-store'
+import { configureStore } from './redux-store'
+
+const history = createHashHistory()
+const store = configureStore(history)
 
 const render = Application => {
   ReactDOM.render(
     <Provider store={store}>
-      <Application />
+      <Router history={history}>
+        <Application />
+      </Router>
     </Provider>,
-    
+
     document.getElementById('app')
   )
 }

@@ -40,6 +40,9 @@ module.exports = {
     'eol-last': [
       'error',
       'always'
+    ],
+    'no-multi-spaces': [
+      'error'
     ]
   }
 }

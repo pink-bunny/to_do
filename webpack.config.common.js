@@ -19,7 +19,10 @@ module.exports = {
       'redux-multi',
       'redux-thunk',
       'redux-logger',
-      'redux-devtools-extension'
+      'redux-devtools-extension',
+
+      'react-router-dom',
+      'react-router-redux'
     ]
   },
 
@@ -35,7 +38,8 @@ module.exports = {
   },
 
   output: {
-    path: path.resolve(__dirname, 'build')
+    path: path.resolve(__dirname, 'build'),
+    publicPath: '/'
   },
 
   module: {
