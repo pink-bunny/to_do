@@ -31,17 +31,9 @@ module.exports = merge(common, {
   },
 
   plugins: [
-    new CleanWebpackPlugin([
-      'build'
-    ]),
-
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true
-    }),
-
-    new ExtractTextWebpackPlugin({
-      filename: '[name].[contenthash].css'
-    }),
+    new CleanWebpackPlugin([ 'build' ]),
+    new webpack.optimize.UglifyJsPlugin({ sourceMap: true }),
+    new ExtractTextWebpackPlugin({ filename: '[name].[contenthash].css' }),
 
     new webpack.DefinePlugin({
       'process.env': {
