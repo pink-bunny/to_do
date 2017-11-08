@@ -1,7 +1,11 @@
 module.exports = {
   'parser': 'babel-eslint',
+  'globals': {
+    'process': true
+  },
   'env': {
     'es6': true,
+    'node': true,
     'browser': true
   },
   'extends': [

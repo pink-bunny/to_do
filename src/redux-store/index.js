@@ -1,6 +1,3 @@
-/* global process */
-/* eslint-env node */
-
 import multiMiddleware from 'redux-multi'
 import thunkMiddleware from 'redux-thunk'
 
