@@ -1,7 +1,7 @@
 /* eslint-env node */
 
-import React from 'react'
-import ReactDOM from 'react-dom'
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { createHashHistory } from 'history'
 import { ConnectedRouter as Router } from 'react-router-redux'
@@ -13,7 +13,7 @@ import { configureStore } from './redux-store'
 const history = createHashHistory()
 const store = configureStore(history)
 
-const render = Application => {
+const render = (Application: React.ComponentType) => {
   ReactDOM.render(
     <Provider store={store}>
       <Router history={history}>

@@ -7,7 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: {
-    app: './src/index.js',
+    app: './ts-out/index.js',
 
     vendor: [
       'react',
@@ -26,9 +26,14 @@ module.exports = {
     ]
   },
 
+  devServer: {
+    historyApiFallback: true
+  },
+
   resolve: {
     modules: [
-      path.resolve(__dirname, 'src'),
+      path.resolve(__dirname, 'ts-out'),
+      path.resolve(__dirname, 'ts-src'),
       path.resolve(__dirname, 'node_modules')
     ],
     extensions: [
@@ -46,8 +51,8 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: [ 'babel-loader' ]
+        use: ['babel-loader'],
+        exclude: /node_modules/
       }
     ]
   },

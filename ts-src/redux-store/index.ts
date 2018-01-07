@@ -1,3 +1,5 @@
+import { History } from 'history'
+
 import multiMiddleware from 'redux-multi'
 import thunkMiddleware from 'redux-thunk'
 
@@ -10,7 +12,7 @@ import reducer from './reducer'
 
 const isDev = process.env.NODE_ENV === 'development'
 
-const configureStore = history => {
+const configureStore = (history: History) => {
   const loggerMiddleware =
     createLoggerMiddleware({
       collapsed: true,
@@ -34,9 +36,7 @@ const configureStore = history => {
     ...devMiddleware
   )
 
-  const store = createStore(reducer,
-    composeWithDevTools(middlewares)
-  )
+  const store = createStore(reducer, composeWithDevTools(middlewares))
 
   if (module.hot) {
     module.hot.accept('./reducer', () => {
