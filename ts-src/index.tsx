@@ -1,34 +1,32 @@
-/* eslint-env node */
+import React from 'react'
+import ReactDOM from 'react-dom/server'
 
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
-import { createHashHistory } from 'history'
-import { ConnectedRouter as Router } from 'react-router-redux'
+import express from 'express'
 
-import Application from './Application'
+import Application from 'client/Application'
 
-import { configureStore } from './redux-store'
+const app = express()
 
-const history = createHashHistory()
-const store = configureStore(history)
+app.use(express.static('build'))
 
-const render = (Application: React.ComponentType) => {
-  ReactDOM.render(
-    <Provider store={store}>
-      <Router history={history}>
-        <Application />
-      </Router>
-    </Provider>,
+app.get('/', (_, res) => {
+  const html = ReactDOM.renderToString(
+    <html>
+      <head></head>
 
-    document.getElementById('app')
+      <body>
+        <div id="app">
+          <Application />
+        </div>
+
+        <script src="client.js" />
+      </body>
+    </html>
   )
-}
 
-render(Application)
+  res.send(html)
+})
 
-if (module.hot) {
-  module.hot.accept('./Application', () => {
-    render(require('./Application').default)
-  })
-}
+app.listen(3000, () => {
+  console.log('Listening on port 3000...')
+})

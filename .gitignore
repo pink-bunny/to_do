@@ -1,5 +1,7 @@
+.vscode
 .DS_Store
 
 build
 ts-out
+public
 node_modules
