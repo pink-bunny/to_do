@@ -1,14 +1,12 @@
 import React from 'react'
 
-// import 'Application.scss'
+import { Route } from 'react-router-dom'
+
+import Home from 'client/scenes/Home'
 
 const Application = () => (
   <div>
-    <div>Hello, world!</div>
-
-    <button onClick={() => console.log('I am here!')}>
-      Click me!
-    </button>
+    <Route exact path="/" component={Home} />
   </div>
 )
 
