@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Route } from 'react-router-dom'
 
-import Home from 'client/scenes/Home'
+import Home from 'base/scenes/Home'
 
 const Application = () => (
   <div>

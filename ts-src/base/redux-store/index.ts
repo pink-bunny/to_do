@@ -8,9 +8,9 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import { createLogger as createLoggerMiddleware } from 'redux-logger'
 import { routerMiddleware as createRouterMiddleware } from 'react-router-redux'
 
-import reducer from './reducer'
+import * as env from 'base/config/env'
 
-const isDev = process.env.NODE_ENV === 'development'
+import reducer from './reducer'
 
 const configureStore = (history: History) => {
   const loggerMiddleware =
@@ -24,9 +24,9 @@ const configureStore = (history: History) => {
       history
     )
 
-  const devMiddleware = isDev
-    ? [loggerMiddleware]
-    : []
+  const devMiddleware =
+    env.DEV_ENV && env.CLIENT_WEBPACK_BUILD_TARGET
+      ? [loggerMiddleware] : []
 
   const middlewares = applyMiddleware(
     multiMiddleware,

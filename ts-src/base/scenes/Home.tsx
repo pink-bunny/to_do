@@ -1,4 +1,6 @@
-import React from 'react'
+import * as React from 'react'
+
+import UsersList from 'base/components/UsersList'
 
 const Home = () => (
   <div>
@@ -7,6 +9,8 @@ const Home = () => (
     <button onClick={() => console.log('I am here!')}>
       Click me!
     </button>
+
+    <UsersList />
   </div>
 )
 
