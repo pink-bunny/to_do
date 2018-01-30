@@ -1,17 +1,15 @@
-/* eslint-env node */
-
-import React from 'react'
-import ReactDOM from 'react-dom'
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { createBrowserHistory } from 'history'
 import { ConnectedRouter as Router } from 'react-router-redux'
 
-import Application from './Application'
+import Application from 'base/components/Application'
 
 import { configureStore } from 'base/redux-store'
 
 const history = createBrowserHistory()
-const store = configureStore(history)
+const store = configureStore(history, window.INITIAL_STATE)
 
 const render = (Application: React.ComponentType) => {
   ReactDOM.hydrate(

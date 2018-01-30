@@ -1,4 +1,4 @@
-import { connect } from 'react-redux'
+import { connect, Store } from 'react-redux'
 
 import State from 'base/redux-store/state'
 import { getUsers } from 'base/redux-store/users/selectors'
@@ -17,5 +17,9 @@ const mapDispatchToProps = {
 const UsersListContainer = connect(
   mapStateToProps, mapDispatchToProps
 )(UsersListComponent)
+
+export const loadData = (store: Store<State>): Promise<any> => {
+  return store.dispatch(fetchUsers())
+}
 
 export default UsersListContainer

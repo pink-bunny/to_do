@@ -12,10 +12,10 @@ export interface FetchUsersAction {
 }
 
 export type FetchUsersActionCreator =
-  ActionCreator<ThunkAction<void, State, null>>
+  ActionCreator<ThunkAction<Promise<any>, State, null>>
 
-export const fetchUsers: FetchUsersActionCreator = () => (dispatch: Dispatch<State>) => {
+export const fetchUsers: FetchUsersActionCreator = () => (dispatch: Dispatch<State>) => (
   Axios.get<UsersArray>('https://react-ssr-api.herokuapp.com/users').then(response => {
     dispatch({ type: Types.FETCH_USERS, payload: response } as FetchUsersAction)
   })
-}
+)

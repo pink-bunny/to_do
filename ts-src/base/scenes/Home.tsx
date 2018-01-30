@@ -1,7 +1,5 @@
 import * as React from 'react'
 
-import UsersList from 'base/components/UsersList'
-
 const Home = () => (
   <div>
     <div>Hello, world!</div>
@@ -9,9 +7,7 @@ const Home = () => (
     <button onClick={() => console.log('I am here!')}>
       Click me!
     </button>
-
-    <UsersList />
   </div>
 )
 
-export default Home
+export default { component: Home }

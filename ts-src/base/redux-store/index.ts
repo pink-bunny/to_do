@@ -10,9 +10,10 @@ import { routerMiddleware as createRouterMiddleware } from 'react-router-redux'
 
 import * as env from 'base/config/env'
 
+import State from './state'
 import reducer from './reducer'
 
-const configureStore = (history: History) => {
+const configureStore = (history: History, preloadedState?: State) => {
   const loggerMiddleware =
     createLoggerMiddleware({
       collapsed: true,
@@ -36,7 +37,9 @@ const configureStore = (history: History) => {
     ...devMiddleware
   )
 
-  const store = createStore(reducer, composeWithDevTools(middlewares))
+  const store = !preloadedState
+    ? createStore(reducer, composeWithDevTools(middlewares))
+    : createStore(reducer, preloadedState, composeWithDevTools(middlewares))
 
   if (module.hot) {
     module.hot.accept('./reducer', () => {

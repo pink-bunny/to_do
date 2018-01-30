@@ -54,7 +54,9 @@
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
   },
   "files": [
-    "index.d.ts"
+    "typings/window.d.ts",
+    "typings/redux-multi.d.ts",
+    "typings/react-router-config.d.ts"
   ],
   "include": [
     "ts-src/**/*"
