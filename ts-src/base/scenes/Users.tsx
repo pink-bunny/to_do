@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 
 import UsersList from 'base/components/UsersList'
 import { loadData } from 'base/components/UsersList'

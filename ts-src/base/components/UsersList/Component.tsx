@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 
 import { UsersArray } from 'base/redux-store/users/reducer'
 import { FetchUsersActionCreator } from 'base/redux-store/users/actions'
