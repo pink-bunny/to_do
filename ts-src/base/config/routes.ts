@@ -4,6 +4,7 @@ import Application from 'base/components/Application'
 
 import Home from 'base/scenes/Home'
 import Users from 'base/scenes/Users'
+import NotFound from 'base/scenes/NotFound'
 
 const routes: RouteConfig[] = [
   {
@@ -19,6 +20,9 @@ const routes: RouteConfig[] = [
         exact: true,
         path: '/users',
         ...Users
+      },
+      {
+        ...NotFound
       }
     ]
   }

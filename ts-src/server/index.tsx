@@ -53,6 +53,8 @@ app.get('*', (req, res) => {
       )
       .filter(v => v !== null) as Promise<any>[]
 
+  const context: any = {}
+
   Promise.all(promises).then(() => {
     const html = ReactDOM.renderToString(
       <html>
@@ -74,7 +76,10 @@ app.get('*', (req, res) => {
         <body>
           <div id="app">
             <Provider store={store}>
-              <StaticRouter location={req.path} context={{}}>
+              <StaticRouter
+                context={context}
+                location={req.path}
+              >
                 <Routes />
               </StaticRouter>
             </Provider>
@@ -82,6 +87,10 @@ app.get('*', (req, res) => {
         </body>
       </html>
     )
+
+    if (context.notFound) {
+      res.status(404)
+    }
 
     res.send(html)
   })
