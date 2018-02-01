@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
@@ -9,7 +11,8 @@ import Application from 'base/components/Application'
 import { configureStore } from 'base/redux-store'
 
 const history = createBrowserHistory()
-const store = configureStore(history, window.INITIAL_STATE)
+const axiosInstance = axios.create({ baseURL: '/api' })
+const store = configureStore(history, axiosInstance, window.INITIAL_STATE)
 
 const render = (Application: React.ComponentType) => {
   ReactDOM.hydrate(

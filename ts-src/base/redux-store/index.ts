@@ -1,4 +1,5 @@
 import { History } from 'history'
+import { AxiosInstance } from 'axios'
 
 import multiMiddleware from 'redux-multi'
 import thunkMiddleware from 'redux-thunk'
@@ -13,7 +14,7 @@ import * as env from 'base/config/env'
 import State from './state'
 import reducer from './reducer'
 
-const configureStore = (history: History, preloadedState?: State) => {
+const configureStore = (history: History, axiosInstance: AxiosInstance, preloadedState?: State) => {
   const loggerMiddleware =
     createLoggerMiddleware({
       collapsed: true,
@@ -31,8 +32,9 @@ const configureStore = (history: History, preloadedState?: State) => {
 
   const middlewares = applyMiddleware(
     multiMiddleware,
-    thunkMiddleware,
     routerMiddleware,
+
+    thunkMiddleware.withExtraArgument(axiosInstance),
 
     ...devMiddleware
   )

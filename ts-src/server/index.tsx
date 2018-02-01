@@ -1,3 +1,4 @@
+import axios from 'axios'
 import express from 'express'
 
 import React from 'react'
@@ -8,6 +9,7 @@ import serialize from 'serialize-javascript'
 import { createMemoryHistory } from 'history'
 import { StaticRouter } from 'react-router-dom'
 import { matchRoutes } from 'react-router-config'
+import expressHttpProxy from 'express-http-proxy'
 
 import Application from 'base/components/Application'
 
@@ -16,11 +18,31 @@ import { configureStore } from 'base/redux-store'
 
 const app = express()
 
+app.use(
+  '/api',
+
+  expressHttpProxy('https://react-ssr-api.herokuapp.com', {
+    proxyReqOptDecorator: (options) => {
+      options.headers['x-forwarded-host'] = 'localhost:3000'
+
+      return options
+    }
+  })
+)
+
 app.use(express.static('build'))
 
 app.get('*', (req, res) => {
+  const axiosInstance = axios.create({
+    baseURL: 'https://react-ssr-api.herokuapp.com',
+    headers: { cookie: req.get('cookie') || '' }
+  })
+
   const history = createMemoryHistory()
-  const store = configureStore(history)
+
+  const store = configureStore(
+    history, axiosInstance
+  )
 
   const promises: Promise<any>[] =
     matchRoutes(routes, req.path)

@@ -57,6 +57,7 @@
   "files": [
     "typings/window.d.ts",
     "typings/redux-multi.d.ts",
+    "typings/express-http-proxy.d.ts",
     "typings/react-router-config.d.ts"
   ],
   "include": [
