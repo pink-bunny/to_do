@@ -6,7 +6,8 @@ import State from './state'
 
 import user from './user/reducer'
 import users from './users/reducer'
+import admins from './admins/reducer'
 
 export default combineReducers<State>({
-  user, users, router: routerReducer
+  user, users, admins, router: routerReducer
 })

@@ -49,13 +49,17 @@ app.get('*', (req, res) => {
       .map(({ route }) =>
         route.loadData
           ? route.loadData(store)
-          : null
+          : Promise.resolve()
       )
-      .filter(v => v !== null) as Promise<any>[]
+      .map(promise =>
+        new Promise<any>((resolve) => {
+          promise.then(resolve).catch(resolve)
+        })
+      )
 
   const context: any = {}
 
-  Promise.all(promises).then(() => {
+  const render = () => {
     const html = ReactDOM.renderToString(
       <html>
         <head>
@@ -88,12 +92,20 @@ app.get('*', (req, res) => {
       </html>
     )
 
+    if (context.url) {
+      return res.redirect(301, context.url)
+    }
+
     if (context.notFound) {
       res.status(404)
     }
 
     res.send(html)
-  })
+  }
+
+  Promise.all(promises)
+    .then(render)
+    .catch(render)
 })
 
 app.listen(3000, () => {
