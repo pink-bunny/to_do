@@ -64,6 +64,7 @@ app.get('*', (req, res) => {
           <title>React and Redux Boilerplate</title>
 
           <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" />
 
           <script dangerouslySetInnerHTML={{ __html: `window.INITIAL_STATE = ${serialize(store.getState())}` }} />
 

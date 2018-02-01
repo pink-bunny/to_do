@@ -1,12 +1,10 @@
 import React from 'react'
 
 const Home = () => (
-  <div>
-    <div>Hello, world!</div>
+  <div className='center-align'>
+    <h3>Welcome!</h3>
 
-    <button onClick={() => console.log('I am here!')}>
-      Click me!
-    </button>
+    <p>Check out these awesome features!</p>
   </div>
 )
 
