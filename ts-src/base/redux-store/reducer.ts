@@ -4,8 +4,9 @@ import { routerReducer } from 'react-router-redux'
 
 import State from './state'
 
+import user from './user/reducer'
 import users from './users/reducer'
 
 export default combineReducers<State>({
-  users, router: routerReducer
+  user, users, router: routerReducer
 })

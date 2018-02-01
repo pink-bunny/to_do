@@ -11,7 +11,7 @@ import { StaticRouter } from 'react-router-dom'
 import { matchRoutes } from 'react-router-config'
 import expressHttpProxy from 'express-http-proxy'
 
-import Application from 'base/components/Application'
+import Routes from 'base/components/Routes'
 
 import routes from 'base/config/routes'
 import { configureStore } from 'base/redux-store'
@@ -21,7 +21,7 @@ const app = express()
 app.use(
   '/api',
 
-  expressHttpProxy('https://react-ssr-api.herokuapp.com', {
+  expressHttpProxy('http://react-ssr-api.herokuapp.com', {
     proxyReqOptDecorator: (options) => {
       options.headers['x-forwarded-host'] = 'localhost:3000'
 
@@ -34,7 +34,7 @@ app.use(express.static('build'))
 
 app.get('*', (req, res) => {
   const axiosInstance = axios.create({
-    baseURL: 'https://react-ssr-api.herokuapp.com',
+    baseURL: 'http://react-ssr-api.herokuapp.com',
     headers: { cookie: req.get('cookie') || '' }
   })
 
@@ -74,7 +74,7 @@ app.get('*', (req, res) => {
           <div id="app">
             <Provider store={store}>
               <StaticRouter location={req.path} context={{}}>
-                <Application />
+                <Routes />
               </StaticRouter>
             </Provider>
           </div>

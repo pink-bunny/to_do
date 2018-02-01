@@ -1,13 +1,21 @@
 import React from 'react'
 
-import { renderRoutes } from 'react-router-config'
+import {
+  renderRoutes,
+  RouteConfigComponentProps
+} from 'react-router-config'
 
-import routes from 'base/config/routes'
+import Header from 'base/components/Header'
 
-const Application = () => (
+type ApplicationComponentPropTypes = RouteConfigComponentProps<any>
+type ApplicationComponentType = React.SFC<ApplicationComponentPropTypes | {}>
+
+const ApplicationComponent: ApplicationComponentType = (props) => (
   <div>
-    {renderRoutes(routes)}
+    <Header />
+
+    {renderRoutes((props as ApplicationComponentPropTypes).route!.routes)}
   </div>
 )
 
-export default Application
+export default ApplicationComponent

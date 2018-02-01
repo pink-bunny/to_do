@@ -16,7 +16,7 @@ export type FetchUsersActionCreator = ActionCreator<
 >
 
 export const fetchUsers: FetchUsersActionCreator = () => (dispatch, _, axios) => (
-  axios.get<UsersArray>('https://react-ssr-api.herokuapp.com/users').then(response => {
+  axios.get<UsersArray>('/users').then(response => {
     dispatch({ type: Types.FETCH_USERS, payload: response } as FetchUsersAction)
   })
 )

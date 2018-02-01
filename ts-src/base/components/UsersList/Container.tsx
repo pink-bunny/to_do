@@ -18,8 +18,6 @@ const UsersListContainer = connect(
   mapStateToProps, mapDispatchToProps
 )(UsersListComponent)
 
-export const loadData = (store: Store<State>): Promise<any> => {
-  return store.dispatch(fetchUsers())
-}
+export const loadData = (store: Store<State>): Promise<any> => store.dispatch(fetchUsers())
 
 export default UsersListContainer

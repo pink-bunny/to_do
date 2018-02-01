@@ -1,18 +1,26 @@
 import { RouteConfig } from 'react-router-config'
 
+import Application from 'base/components/Application'
+
 import Home from 'base/scenes/Home'
 import Users from 'base/scenes/Users'
 
 const routes: RouteConfig[] = [
   {
-    path: '/',
-    exact: true,
-    ...Home
-  },
-  {
-    exact: true,
-    path: '/users',
-    ...Users
+    ...Application,
+
+    routes: [
+      {
+        path: '/',
+        exact: true,
+        ...Home
+      },
+      {
+        exact: true,
+        path: '/users',
+        ...Users
+      }
+    ]
   }
 ]
 
