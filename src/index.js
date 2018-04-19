@@ -3,14 +3,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { createHashHistory } from 'history'
+import { createBrowserHistory } from 'history'
 import { ConnectedRouter as Router } from 'react-router-redux'
-
 import Application from './Application'
-
 import { configureStore } from './redux-store'
+import 'Application.scss'
 
-const history = createHashHistory()
+const history = createBrowserHistory()
 const store = configureStore(history)
 
 const render = Application => {
