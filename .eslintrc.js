@@ -39,8 +39,11 @@ module.exports = {
     ],
     'semi': [
       'error',
-      'never'
+      'always'
     ],
+    'no-extra-semi': [
+      'error'
+     ],
     'eol-last': [
       'error',
       'always'
