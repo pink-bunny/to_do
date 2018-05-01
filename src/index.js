@@ -8,7 +8,7 @@ import { ConnectedRouter as Router } from 'react-router-redux'
 import Application from './Application'
 import { configureStore } from './redux-store'
 import 'Application.scss'
-
+// import { addFriend } from './redux-store/task/actions';
 const history = createBrowserHistory()
 const store = configureStore(history)
 
@@ -25,6 +25,8 @@ const render = Application => {
 }
 
 render(Application)
+
+// store.dispatch(addFriend('Barack Obama'));
 
 if (module.hot) {
   module.hot.accept('./Application', () => {
