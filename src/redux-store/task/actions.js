@@ -1,17 +1,13 @@
 import * as types from './types';
 import axios from 'axios';
 
-export function submitSignUp (email, password, password_confirmation) {
+export function submitSignUp (data) {
+  console.log('DATA', data);
   return function(dispatch) {
     return axios.post('http://52.56.45.37/api/v1/auth', {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-      },
-      params: {
-        email,
-        password,
-        password_confirmation
-      }
+      email: data.email,
+      password: data.password,
+      password_confirmation: data.password_confirmation
     }).then((response) => {
       console.log('RESPONSE', response);
     }).catch((error) => {
@@ -20,6 +16,14 @@ export function submitSignUp (email, password, password_confirmation) {
         console.log( 'Ключ: ' + key + ' значение: ' + error[key] );
       }
     });
+  }
+}
+export function submitSignIn (email, password) {
+  return function(dispatch) {
+    return axios.post('http://52.56.45.37/api/v1/auth/sign_in', {
+      email,
+      password,
+    })
   }
 }
 

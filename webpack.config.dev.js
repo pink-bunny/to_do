@@ -13,7 +13,8 @@ module.exports = merge(common, {
   },
 
   devServer: {
-    hot: true
+    hot: true,
+    port: 3000
   },
 
   module: {

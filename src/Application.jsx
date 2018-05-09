@@ -1,14 +1,12 @@
 import React from 'react';
 import { Route } from 'react-router';
-import { Link } from 'react-router-dom';
 import {
-  Test
+  SignUp
 } from './pages';
 
 const Application = () =>
   <div>
-    <Link to="/test" >Link to</Link>
-    <Route path="/test" component={Test} />
+    <Route path="/" component={ SignUp } />
   </div>;
 
 export default Application;
