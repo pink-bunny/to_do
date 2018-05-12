@@ -1,3 +1,5 @@
+@import "custom";
+
 @import "~bootstrap-sass/assets/stylesheets/bootstrap-sprockets";
 
 // Core variables and mixins
@@ -49,8 +51,4 @@
 
 // Utility classes
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/utilities";
-@import "~bootstrap-sass/assets/stylesheets/bootstrap/responsive-utilities";\
-body {
-  margin: 0;
-  padding: 0;
-}
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/responsive-utilities";
