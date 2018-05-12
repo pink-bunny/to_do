@@ -39,8 +39,14 @@ module.exports = {
     ],
     'semi': [
       'error',
-      'never'
+      'always'
     ],
+    'no-extra-semi': [
+      'error'
+     ],
+    // 'no-console': [
+    //   "error", { allow: ["warn", "error"] }
+    // ]
     'eol-last': [
       'error',
       'always'

@@ -1,17 +1,14 @@
-/* eslint-env node */
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createBrowserHistory } from 'history';
+import { ConnectedRouter as Router } from 'react-router-redux';
+import Application from './Application';
+import { configureStore } from './redux-store';
+import 'scss/app.scss';
 
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
-import { createHashHistory } from 'history'
-import { ConnectedRouter as Router } from 'react-router-redux'
-
-import Application from './Application'
-
-import { configureStore } from './redux-store'
-
-const history = createHashHistory()
-const store = configureStore(history)
+const history = createBrowserHistory();
+const store = configureStore(history);
 
 const render = Application => {
   ReactDOM.render(
@@ -22,13 +19,14 @@ const render = Application => {
     </Provider>,
 
     document.getElementById('app')
-  )
-}
+  );
+};
 
-render(Application)
+render(Application);
+
 
 if (module.hot) {
   module.hot.accept('./Application', () => {
-    render(require('./Application').default)
-  })
+    render(require('./Application').default);
+  });
 }

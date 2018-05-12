@@ -13,7 +13,8 @@ module.exports = merge(common, {
   },
 
   devServer: {
-    hot: true
+    hot: true,
+    port: 3000
   },
 
   module: {
@@ -25,6 +26,10 @@ module.exports = merge(common, {
           'css-loader',
           'sass-loader'
         ]
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif|svg|ttf|woff|woff2)$/,
+        use: 'file-loader?name=[name].[ext]',
       }
     ]
   },

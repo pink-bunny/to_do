@@ -1,8 +1,16 @@
-import React from 'react'
-
-import 'Application.scss'
+import React from 'react';
+import { Route } from 'react-router';
+import Header from './components/Header'
+import {
+  SignUp
+} from './pages';
 
 const Application = () =>
-  <div>Hello, world!</div>
+  <div>
+    <Header />
+    <div className="page-container">
+      <Route path="/" component={ SignUp } />
+    </div>
+  </div>;
 
-export default Application
+export default Application;
