@@ -1,21 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
+import { Alert, Col, Form , Button} from 'react-bootstrap';
 import { submitSignUp } from '../redux-store/task/actions';
 import InputField from '../components/InputField';
-import { minLength8, email } from '../utils/validation';
-import { Alert, Col, Form , Button} from 'react-bootstrap';
+import { minLength8, email, passwordConfirm } from '../utils/validation';
 
-var test = function(error) {
+var errorList = function(error) {
   let temp = [];
   for (let prop in error) {
-    console.log('prop', prop)
-    temp.push(error[prop])
+    temp.push(error[prop]);
   }
-  console.log('temp', temp)
-  return temp
-}
-
+  return temp;
+};
 
 const SignUp = props => {
   return (
@@ -23,18 +21,20 @@ const SignUp = props => {
       <div className="row">
         <Col sm={8} smOffset={2} md={4} mdOffset={4}>
           <h2>Sign Up</h2>
-          {/* <Alert bsStyle="success" className="mb-10">
-            <p className="mb-5"><strong>Well done!</strong> You have successfully registered.</p>
-          </Alert>
-          <Alert bsStyle="danger">
-            <p className="mb-5">Incorrect login or(and) password.</p>
-          </Alert> */}
-          {console.log('formHasError', props.formHasError)}
-          {test(props.formHasError).map((item, index) => (
-              <div className="text-danger" key={index}>
-                  {item}
-              </div>
-          ))}
+          {
+            props.submitSucceeded &&
+            <Alert bsStyle="success" className="mb-10">
+              <p className="mb-5"><strong>Well done!</strong> You have successfully registered.</p>
+            </Alert>
+          }
+
+          {
+            errorList(props.formHasError).map((item, index) => (
+              <Alert bsStyle="danger" key={index}>
+                {item}
+              </Alert>
+            ))
+          }
 
           <Form onSubmit={props.handleSubmit(submitSignUp)}>
             <div className="mb-20">
@@ -56,10 +56,14 @@ const SignUp = props => {
                 component={InputField}
                 type="password"
                 placeholder="Confirm password"
-                validate={minLength8}
+                validate={passwordConfirm}
               />
             </div>
-            <Button type="submit" bsStyle="primary" className="mb-15 mr-15">
+            <Button
+              type="submit"
+              bsStyle="primary"
+              className="mb-15 mr-15"
+            >
               Sign Up
             </Button>
             <p>Already a member? <a href="/sign-in">Sign In</a></p>
@@ -72,8 +76,15 @@ const SignUp = props => {
   );
 };
 
+SignUp.propTypes = {
+  submitSucceeded: PropTypes.bool,
+  formHasError: PropTypes.object,
+  handleSubmit: PropTypes.func
+};
+
 const mapStateToProps = (state) => ({
-  formHasError: state.form.simpleSignUpForm && state.form.simpleSignUpForm.syncErrors
+  formHasError: state.form.simpleSignUpForm && state.form.simpleSignUpForm.syncErrors,
+  submitSucceeded: state.form.simpleSignUpForm && state.form.simpleSignUpForm.submitSucceeded
 });
 
 export default connect(mapStateToProps)(reduxForm({

@@ -1,5 +1,5 @@
 $font-size-base:                       14px;
-$line-height-base:                     1.714285;
+$line-height-base:                     1.4;
 $text-color:                           $base-text-color;
 $link-hover-decoration:                underline;
 $link-hover-color:                     color(blue-500);
@@ -35,3 +35,5 @@ $alert-padding:                         10px 20px 5px;
 $alert-success-bg:            color(green-300);
 $alert-success-text:          $base-text-color;
 $alert-success-border:        color(green-300);
+$state-danger-text: color(red-500);
+$state-danger-bg: color(red-500);

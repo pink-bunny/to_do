@@ -1,13 +1,13 @@
 import * as types from './types';
 import axios from 'axios';
 
-export function submitSignUp (data) {
-  console.log('DATA', data);
+export function submitSignUp (email, password, password_confirmation) {
+  // console.log('DATA', data);
   return function(dispatch) {
     return axios.post('http://52.56.45.37/api/v1/auth', {
-      email: data.email,
-      password: data.password,
-      password_confirmation: data.password_confirmation
+      email,
+      password,
+      password_confirmation
     }).then((response) => {
       console.log('RESPONSE', response);
     }).catch((error) => {
