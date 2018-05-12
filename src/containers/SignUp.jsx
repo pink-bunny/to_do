@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom'
 import { Field, reduxForm } from 'redux-form';
 import { Alert, Col, Form , Button} from 'react-bootstrap';
 import { submitSignUp } from '../redux-store/task/actions';
@@ -66,7 +67,7 @@ const SignUp = props => {
             >
               Sign Up
             </Button>
-            <p>Already a member? <a href="/sign-in">Sign In</a></p>
+            <p>Already a member? <Link to="/sign-in">Sign In</Link></p>
           </Form>
 
         </Col>

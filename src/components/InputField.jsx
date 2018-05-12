@@ -25,7 +25,6 @@ const InputField = ({
       type={type}
     />
 
-    {/* {touched && error && <HelpBlock>{error}</HelpBlock> } */}
   </FormGroup>
 );
 
