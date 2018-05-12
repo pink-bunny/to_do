@@ -14,7 +14,9 @@ const InputField = ({
   type,
   meta: { touched, error }
 }) => (
-  <FormGroup>
+  <FormGroup
+    className={touched && error && 'has-error'}
+  >
     { label && <ControlLabel>{label}</ControlLabel> }
 
     <FormControl
@@ -23,7 +25,7 @@ const InputField = ({
       type={type}
     />
 
-    {touched && error && <HelpBlock>{error}</HelpBlock> }
+    {/* {touched && error && <HelpBlock>{error}</HelpBlock> } */}
   </FormGroup>
 );
 
