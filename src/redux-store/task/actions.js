@@ -1,21 +1,15 @@
-import * as types from './types';
 import axios from 'axios';
+import { SubmissionError } from 'redux-form'
 
-export function submitSignUp (email, password, password_confirmation) {
-  return function(dispatch) {
-    return axios.post('http://52.56.45.37/api/v1/auth', {
-      email,
-      password,
-      password_confirmation
-    }).then((response) => {
-      console.log('RESPONSE', response);
-    }).catch((error) => {
-      console.log('ERROR', error);
-      for (var key in error) {
-        console.log( 'Ключ: ' + key + ' значение: ' + error[key] );
-      }
-    });
+export function submitSignUp (data) {
+  return axios.post('http://52.56.45.37/api/v1/auth', {
+    email: data.email,
+    password: data.password,
+    password_confirmation: data.password_confirmation
   }
+  ).catch((error) => {
+    throw new SubmissionError({ email: 'Email has already been taken' })
+  });
 }
 export function submitSignIn (email, password) {
   return function(dispatch) {

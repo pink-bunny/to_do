@@ -29,20 +29,23 @@ const SignUp = props => {
             </Alert>
           }
 
-          {
-            errorList(props.formHasError).map((item, index) => (
+          {errorList(props.formHasError).map((item, index) => (
               <Alert bsStyle="danger" key={index}>
                 {item}
               </Alert>
-            ))
-          }
+          ))}
+          {errorList(props.submitErrors).map((item, index) => (
+              <Alert bsStyle="danger" key={index}>
+                {item}
+              </Alert>
+          ))}
 
           <Form onSubmit={props.handleSubmit(submitSignUp)}>
             <div className="mb-20">
               <Field
-                name="firstName"
+                name="email"
                 component={InputField}
-                placeholder="First Name"
+                placeholder="Email"
                 validate={email}
               />
               <Field
@@ -53,7 +56,7 @@ const SignUp = props => {
                 validate={minLength8}
               />
               <Field
-                name="confirm_password"
+                name="password_confirmation"
                 component={InputField}
                 type="password"
                 placeholder="Confirm password"
@@ -64,6 +67,7 @@ const SignUp = props => {
               type="submit"
               bsStyle="primary"
               className="mb-15 mr-15"
+              disabled={props.pristine || props.invalid}
             >
               Sign Up
             </Button>
@@ -83,10 +87,14 @@ SignUp.propTypes = {
   handleSubmit: PropTypes.func
 };
 
-const mapStateToProps = (state) => ({
-  formHasError: state.form.simpleSignUpForm && state.form.simpleSignUpForm.syncErrors,
-  submitSucceeded: state.form.simpleSignUpForm && state.form.simpleSignUpForm.submitSucceeded
-});
+const mapStateToProps = (state) => {
+  const signUpForm = state.form.simpleSignUpForm;
+  return({
+    formHasError: signUpForm && signUpForm.syncErrors,
+    submitErrors: signUpForm && signUpForm.submitErrors,
+    submitSucceeded: signUpForm && signUpForm.submitSucceeded
+  })
+};
 
 export default connect(mapStateToProps)(reduxForm({
   form: 'simpleSignUpForm'

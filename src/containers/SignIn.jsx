@@ -4,29 +4,32 @@ import { Link } from 'react-router-dom'
 import { Alert, Col, Form , Button} from 'react-bootstrap';
 import InputField from '../components/InputField';
 import { Field, reduxForm } from 'redux-form';
+import { submitSignIn } from '../redux-store/task/actions';
 
-const SignIn = () => (
+const SignIn = props => (
   <div className="container">
     <div className="row">
       <Col sm={8} smOffset={2} md={4} mdOffset={4}>
         <h2>Sign In</h2>
-        <Alert bsStyle="danger">
-          <p className="mb-5">Incorrect login or(and) password.</p>
-        </Alert>
-        <Form>
+
+        { props.formHasError &&
+          <Alert bsStyle="danger">
+            Incorrect login or(and) password.
+          </Alert>
+        }
+
+        <Form onSubmit={props.handleSubmit(submitSignIn)}>
           <div className="mb-20">
             <Field
               name="userName"
               component={InputField}
               placeholder="User Name"
-              validate={false}
             />
             <Field
               name="password"
               component={InputField}
               type="password"
               placeholder="Password"
-              validate={false}
             />
           </div>
           <Button type="submit" bsStyle="primary" className="mb-15 mr-15">
@@ -39,6 +42,10 @@ const SignIn = () => (
   </div>
 )
 
-export default connect()(reduxForm({
+const mapStateToProps = (state) => ({
+  formHasError: state.form.signInForm && state.form.signInForm.syncErrors,
+});
+
+export default connect(mapStateToProps)(reduxForm({
   form: 'signInForm'
 })(SignIn));
