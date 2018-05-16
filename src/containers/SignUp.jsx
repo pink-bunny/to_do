@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import { Alert, Col, Form , Button} from 'react-bootstrap';
 import { submitSignUp } from '../redux-store/task/actions';
@@ -30,14 +30,14 @@ const SignUp = props => {
           }
 
           {errorList(props.formHasError).map((item, index) => (
-              <Alert bsStyle="danger" key={index}>
-                {item}
-              </Alert>
+            <Alert bsStyle="danger" key={index}>
+              {item}
+            </Alert>
           ))}
           {errorList(props.submitErrors).map((item, index) => (
-              <Alert bsStyle="danger" key={index}>
-                {item}
-              </Alert>
+            <Alert bsStyle="danger" key={index}>
+              {item}
+            </Alert>
           ))}
 
           <Form onSubmit={props.handleSubmit(submitSignUp)}>
@@ -83,7 +83,10 @@ const SignUp = props => {
 
 SignUp.propTypes = {
   submitSucceeded: PropTypes.bool,
+  pristine: PropTypes.bool,
+  invalid: PropTypes.bool,
   formHasError: PropTypes.object,
+  submitErrors: PropTypes.object,
   handleSubmit: PropTypes.func
 };
 
@@ -93,7 +96,7 @@ const mapStateToProps = (state) => {
     formHasError: signUpForm && signUpForm.syncErrors,
     submitErrors: signUpForm && signUpForm.submitErrors,
     submitSucceeded: signUpForm && signUpForm.submitSucceeded
-  })
+  });
 };
 
 export default connect(mapStateToProps)(reduxForm({
