@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom'
-import { Alert, Col, Form , Button} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { Alert, Col, Form, Button} from 'react-bootstrap';
 import InputField from '../components/InputField';
 import { Field, reduxForm } from 'redux-form';
 import { submitSignIn } from '../redux-store/task/actions';
@@ -14,16 +14,16 @@ const SignIn = props => (
 
         { props.formHasError &&
           <Alert bsStyle="danger">
-            Incorrect login or(and) password.
+            { props.formHasError }
           </Alert>
         }
 
         <Form onSubmit={props.handleSubmit(submitSignIn)}>
           <div className="mb-20">
             <Field
-              name="userName"
+              name="email"
               component={InputField}
-              placeholder="User Name"
+              placeholder="Email"
             />
             <Field
               name="password"
@@ -43,7 +43,7 @@ const SignIn = props => (
 )
 
 const mapStateToProps = (state) => ({
-  formHasError: state.form.signInForm && state.form.signInForm.syncErrors,
+  formHasError: state.form.signInForm && state.form.signInForm.error,
 });
 
 export default connect(mapStateToProps)(reduxForm({

@@ -1,20 +1,30 @@
 import axios from 'axios';
 import { SubmissionError } from 'redux-form';
+import * as types from './types';
 
 export function submitSignUp (data) {
   return axios.post('http://52.56.45.37/api/v1/auth', {
     email: data.email,
     password: data.password,
     password_confirmation: data.password_confirmation
-  }
-  ).catch(() => {
-    throw new SubmissionError({ email: 'Email has already been taken' });
+  })
+  .catch((error) => {
+    throw new SubmissionError({ email: error.response.data.errors.full_messages });
   });
 }
 
-export function submitSignIn (data) {
+export function submitSignIn (data, dispatch) {
   return axios.post('http://52.56.45.37/api/v1/auth/sign_in', {
     email: data.email,
     password: data.password
+  })
+  .then((response) => {
+    dispatch({
+      type: types.RECEIVE_AUTH_DATA,
+      payload: response.data.data
+    })
+  })
+  .catch((error) => {
+    throw new SubmissionError({ _error: error.response.data.errors[0] });
   });
 }

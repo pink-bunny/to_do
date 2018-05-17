@@ -7,14 +7,7 @@ import { Alert, Col, Form , Button} from 'react-bootstrap';
 import { submitSignUp } from '../redux-store/task/actions';
 import InputField from '../components/InputField';
 import { minLength8, email, passwordConfirm } from '../utils/validation';
-
-var errorList = function(error) {
-  let temp = [];
-  for (let prop in error) {
-    temp.push(error[prop]);
-  }
-  return temp;
-};
+import { objToArray } from '../utils/helpers';
 
 const SignUp = props => {
   return (
@@ -22,19 +15,18 @@ const SignUp = props => {
       <div className="row">
         <Col sm={8} smOffset={2} md={4} mdOffset={4}>
           <h2>Sign Up</h2>
-          {
-            props.submitSucceeded &&
+          { props.submitSucceeded &&
             <Alert bsStyle="success" className="mb-10">
               <p className="mb-5"><strong>Well done!</strong> You have successfully registered.</p>
             </Alert>
           }
 
-          {errorList(props.formHasError).map((item, index) => (
+          {objToArray(props.formHasError).map((item, index) => (
             <Alert bsStyle="danger" key={index}>
               {item}
             </Alert>
           ))}
-          {errorList(props.submitErrors).map((item, index) => (
+          {objToArray(props.submitErrors).map((item, index) => (
             <Alert bsStyle="danger" key={index}>
               {item}
             </Alert>
