@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import {
   FormGroup,
   ControlLabel,
-  FormControl,
-  HelpBlock
+  FormControl
 } from 'react-bootstrap';
 
 const InputField = ({
@@ -25,7 +24,6 @@ const InputField = ({
       type={type}
     />
 
-    {/* {touched && error && <HelpBlock>{error}</HelpBlock> } */}
   </FormGroup>
 );
 

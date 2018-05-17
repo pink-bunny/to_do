@@ -1,41 +1,30 @@
-import * as types from './types';
 import axios from 'axios';
+import { SubmissionError } from 'redux-form';
+import * as types from './types';
 
-export function submitSignUp (email, password, password_confirmation) {
-  // console.log('DATA', data);
-  return function(dispatch) {
-    return axios.post('http://52.56.45.37/api/v1/auth', {
-      email,
-      password,
-      password_confirmation
-    }).then((response) => {
-      console.log('RESPONSE', response);
-    }).catch((error) => {
-      console.log('ERROR', error);
-      for (var key in error) {
-        console.log( 'Ключ: ' + key + ' значение: ' + error[key] );
-      }
-    });
-  }
+export function submitSignUp (data) {
+  return axios.post('http://52.56.45.37/api/v1/auth', {
+    email: data.email,
+    password: data.password,
+    password_confirmation: data.password_confirmation
+  })
+  .catch((error) => {
+    throw new SubmissionError({ email: error.response.data.errors.full_messages });
+  });
 }
-export function submitSignIn (email, password) {
-  return function(dispatch) {
-    return axios.post('http://52.56.45.37/api/v1/auth/sign_in', {
-      email,
-      password,
+
+export function submitSignIn (data, dispatch) {
+  return axios.post('http://52.56.45.37/api/v1/auth/sign_in', {
+    email: data.email,
+    password: data.password
+  })
+  .then((response) => {
+    dispatch({
+      type: types.RECEIVE_AUTH_DATA,
+      payload: response.data.data
     })
-  }
+  })
+  .catch((error) => {
+    throw new SubmissionError({ _error: error.response.data.errors[0] });
+  });
 }
-
-// export function addFriend (name) {
-//   return {
-//     type: types.ADD_FRIEND,
-//     name
-//   };
-// }
-// export function clickButton(btn_name) {
-//   return {
-//     type: types.BTN_CLICK,
-//     btn_name: btn_name + 1
-//   };
-// }

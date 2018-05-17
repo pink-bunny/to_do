@@ -1,10 +1,7 @@
 import * as types from './types';
 
 const initialState = {
-  email: '',
-
-  name: 'John Doe',
-  btn_name: 1
+  email: ''
 };
 
 export default function friends(state = initialState, action) {
@@ -14,16 +11,6 @@ export default function friends(state = initialState, action) {
       return {
         ...state,
         ...action.payload
-      };
-
-    case types.ADD_FRIEND:
-      return {
-        name: action.name
-      };
-
-    case types.BTN_CLICK:
-      return {
-        btn_name: action.btn_name
       };
 
     default:
