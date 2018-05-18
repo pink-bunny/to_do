@@ -1,4 +1,5 @@
 import axios from 'axios';
+import history from '../../history';
 import { SubmissionError } from 'redux-form';
 import * as types from './types';
 
@@ -8,9 +9,9 @@ export function submitSignUp (data) {
     password: data.password,
     password_confirmation: data.password_confirmation
   })
-  .catch((error) => {
-    throw new SubmissionError({ email: error.response.data.errors.full_messages });
-  });
+    .catch((error) => {
+      throw new SubmissionError({ email: error.response.data.errors.full_messages });
+    });
 }
 
 export function submitSignIn (data, dispatch) {
@@ -18,13 +19,14 @@ export function submitSignIn (data, dispatch) {
     email: data.email,
     password: data.password
   })
-  .then((response) => {
-    dispatch({
-      type: types.RECEIVE_AUTH_DATA,
-      payload: response.data.data
+    .then((response) => {
+      history.push('/');
+      dispatch({
+        type: types.RECEIVE_AUTH_DATA,
+        payload: response.data.data
+      });
     })
-  })
-  .catch((error) => {
-    throw new SubmissionError({ _error: error.response.data.errors[0] });
-  });
+    .catch((error) => {
+      throw new SubmissionError({ _error: error.response.data.errors[0] });
+    });
 }
