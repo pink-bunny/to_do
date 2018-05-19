@@ -20,7 +20,7 @@ export function submitSignIn (data, dispatch) {
     password: data.password
   })
     .then((response) => {
-      history.push('/');
+      history.push('/projects');
       dispatch({
         type: types.RECEIVE_AUTH_DATA,
         payload: response.data.data
@@ -48,3 +48,26 @@ export const submitSignOut = () => (dispatch) => {
       // throw new SubmissionError({ _error: error.response.data.errors[0] });
     });
 };
+
+export function createProject (data, dispatch) {
+  console.log('createProject data', data);
+  return axios.post('http://52.56.45.37/api/v1/projects', {
+    'data': {
+      'type': 'string',
+      'attributes': {
+        'name': data.name
+      }
+    }
+  })
+    .then((response) => {
+      console.log('createProject response', response);
+      dispatch({
+        type: types.PROJECT_IS_CREATED,
+        // payload: response.data.data
+      });
+    })
+    .catch((error) => {
+      console.log('createProject error', error.response);
+      // throw new SubmissionError({ _error: error.response.data.errors[0] });
+    });
+}

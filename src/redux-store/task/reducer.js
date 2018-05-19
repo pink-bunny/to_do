@@ -13,6 +13,12 @@ export default function friends(state = initialState, action) {
         ...action.payload
       };
 
+    case types.PROJECT_IS_CREATED:
+      return {
+        ...state,
+        ...action.payload
+      };
+
     default:
       return state;
   }

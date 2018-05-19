@@ -4,7 +4,8 @@ import Header from './components/Header';
 import { Link } from 'react-router-dom';
 import {
   SignUp,
-  SignIn
+  SignIn,
+  Projects
 } from './pages';
 
 const Application = () =>
@@ -18,6 +19,7 @@ const Application = () =>
       </div>
       <Route path="/sign-up" component={ SignUp } />
       <Route path="/sign-in" component={ SignIn } />
+      <Route path="/projects" component={ Projects } />
     </div>
   </div>;
 
