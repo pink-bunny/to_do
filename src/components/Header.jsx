@@ -1,8 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import logo from '../images/logo.svg';
+import { submitSignOut } from '../redux-store/task/actions';
 
-const Header = () => (
+const Header = (props) => (
   <header className="main-header">
     <div className="container pt-10 pb-5">
       <div className="row d-flex align-center">
@@ -15,11 +17,21 @@ const Header = () => (
           <h1 className="mt-0 mb-5">Simple ToDo List</h1>
         </div>
         <div className="col-xs-3 text-right">
-          <button className="mb-5">Exit</button>
+          <button
+            className="mb-5"
+            onClick={props.logOutUser}
+          >
+            Exit
+          </button>
         </div>
       </div>
     </div>
   </header>
-)
+);
 
-export default Header
+const mapDispatchToProps = {
+  logOutUser: submitSignOut
+};
+
+
+export default connect(null, mapDispatchToProps)(Header);

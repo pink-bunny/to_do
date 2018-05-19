@@ -1,1 +1,2 @@
 export const RECEIVE_AUTH_DATA = 'RECEIVE_AUTH_DATA';
+export const USER_LOGOUT = 'USER_LOGOUT';
