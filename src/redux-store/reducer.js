@@ -2,10 +2,12 @@ import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import { reducer as formReducer } from 'redux-form';
 
-import task from './task/reducer';
+import auth from './auth/reducer';
+import project from './project/reducer';
 
 export default combineReducers({
-  task,
+  auth,
+  project,
   form: formReducer,
   router: routerReducer
 });

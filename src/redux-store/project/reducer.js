@@ -7,12 +7,6 @@ const initialState = {
 export default function friends(state = initialState, action) {
   switch (action.type) {
 
-    case types.RECEIVE_AUTH_DATA:
-      return {
-        ...state,
-        ...action.payload
-      };
-
     case types.PROJECT_IS_CREATED:
       return {
         ...state,

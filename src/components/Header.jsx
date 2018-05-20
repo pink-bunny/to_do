@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import logo from '../images/logo.svg';
-import { submitSignOut } from '../redux-store/task/actions';
+import { submitSignOut } from '../redux-store/auth/actions';
 
 const Header = (props) => (
   <header className="main-header">

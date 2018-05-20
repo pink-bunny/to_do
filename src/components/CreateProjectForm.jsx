@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Form, Button } from 'react-bootstrap';
 import InputField from './InputField';
 import { Field, reduxForm } from 'redux-form';
-import { createProject } from '../redux-store/task/actions';
+import { createProject } from '../redux-store/project/actions';
 
 const CreateProjectForm = (props) => (
   <Form onSubmit={props.handleSubmit(createProject)}>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Alert, Col, Form, Button} from 'react-bootstrap';
 import InputField from '../components/InputField';
 import { Field, reduxForm } from 'redux-form';
-import { submitSignIn } from '../redux-store/task/actions';
+import { submitSignIn } from '../redux-store/auth/actions';
 
 const SignIn = props => (
   <div className="container">
