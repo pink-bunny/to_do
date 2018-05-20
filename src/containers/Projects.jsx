@@ -1,6 +1,7 @@
 import React from 'react';
 import { Col,} from 'react-bootstrap';
 import CreateProjectForm from '../components/CreateProjectForm';
+import ProjectItem from '../components/ProjectItem';
 
 const Projects = () => (
   <div className="container">
@@ -10,7 +11,7 @@ const Projects = () => (
         {/* <Alert bsStyle="success" className="mb-10">
           <p className="mb-5"><b>Well done!</b> You have successfully done all tasks.</p>
         </Alert> */}
-        {/* <ProjectItem /> */}
+        <ProjectItem />
         <CreateProjectForm />
       </Col>
     </div>

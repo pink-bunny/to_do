@@ -19,6 +19,13 @@ export default function friends(state = initialState, action) {
         ...action.payload
       };
 
+    case types.PROJECTS_LIST_RECEIVED:
+      return {
+        ...state,
+        // projects: action.payload.projects
+        ...action.payload
+      };
+
     default:
       return state;
   }

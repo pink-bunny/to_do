@@ -20,7 +20,7 @@ export function submitSignIn (data, dispatch) {
     password: data.password
   })
     .then((response) => {
-      localStorage.setItem('access-token', '8TffsxhR2-vy1hpIPARd7Q')
+      localStorage.setItem('access-token', 'LGfHNRPkYqW4Bl8JNGatRA')
       history.push('projects');
       dispatch({
         type: types.RECEIVE_AUTH_DATA,
@@ -37,7 +37,7 @@ export const submitSignOut = () => (dispatch) => {
   console.log('LOGOUT start');
   const options = {
     method: 'DELETE',
-    headers: { 'uid': 'admin@admin.com', 'client': 'H3ofYtyswbTbd8u_MfIdHw' },
+    headers: { 'uid': 'admin@admin.com', 'client': 'gjApA_me_vqDessjBVo7_Q' },
     url: 'auth/sign_out',
   };
   return client(options)
@@ -57,7 +57,7 @@ export const submitSignOut = () => (dispatch) => {
 
 export function createProject (data, dispatch) {
   console.log('createProject data', data);
-  return client.get('projects', {
+  return client.post('projects', {
     'data': {
       'type': 'projects',
       'attributes': {
@@ -74,6 +74,22 @@ export function createProject (data, dispatch) {
     })
     .catch((error) => {
       console.log('createProject error', error.response);
+      // throw new SubmissionError({ _error: error.response.data.errors[0] });
+    });
+}
+
+export function projectsList (dispatch) {
+  return client.get('projects')
+    .then((response) => {
+      console.log('projectsList response', response.data.data);
+      dispatch({
+        type: types.PROJECTS_LIST_RECEIVED,
+        payload: response.data.data
+      });
+      console.log('projectsList end');
+    })
+    .catch((error) => {
+      console.log('projectsList error', error.response);
       // throw new SubmissionError({ _error: error.response.data.errors[0] });
     });
 }

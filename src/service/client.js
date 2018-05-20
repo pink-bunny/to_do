@@ -5,9 +5,9 @@ const instance = axios.create({
 });
 
 let AUTH_TOKEN = function() {
-  return 'LGfHNRPkYqW4Bl8JNGatRA'
+  return 'LGfHNRPkYqW4Bl8JNGatRA';
   // return localStorage.getItem('access-token')
-}
+};
 
 instance.defaults.headers.common['access-token'] = AUTH_TOKEN();
 instance.defaults.headers.common['client'] = 'gjApA_me_vqDessjBVo7_Q';
