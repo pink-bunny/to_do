@@ -1,11 +1,11 @@
 import history from '../../history';
 import { SubmissionError } from 'redux-form';
 import * as types from './types';
-import client from '../../service/client';
+import axios_set from '../../service/axios_set';
 
 export function createProject (data, dispatch) {
   console.log('createProject data', data);
-  return client.post('projects', {
+  return axios_set.post('projects', {
     'data': {
       'type': 'projects',
       'attributes': {
@@ -27,7 +27,7 @@ export function createProject (data, dispatch) {
 }
 
 export function projectsList (dispatch) {
-  return client.get('projects')
+  return axios_set.get('projects')
     .then((response) => {
       console.log('projectsList response', response.data.data);
       dispatch({

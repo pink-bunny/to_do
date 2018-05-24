@@ -10,7 +10,7 @@ const CreateProjectForm = (props) => (
   <Form onSubmit={props.handleSubmit(createProject)}>
     <div className="mb-20">
       <Field
-        name="email"
+        name="name"
         component={InputField}
         placeholder="Enter Project Name..."
       />

@@ -1,10 +1,14 @@
 import history from '../../history';
 import { SubmissionError } from 'redux-form';
 import * as types from './types';
-import client from '../../service/client';
+import axios_set from '../../service/axios_set';
+
+const token = 'yTaQN0i2kq-ZXWAPcmtxJA';
+const clientI = 'Ieh40mYK2wYxiCl2zVEpJg';
+const uid = 'com@com.com';
 
 export function submitSignUp (data) {
-  return client.post('auth', {
+  return axios_set.post('auth', {
     email: data.email,
     password: data.password,
     password_confirmation: data.password_confirmation
@@ -15,12 +19,12 @@ export function submitSignUp (data) {
 }
 
 export function submitSignIn (data, dispatch) {
-  return client.post('auth/sign_in', {
+  return axios_set.post('auth/sign_in', {
     email: data.email,
     password: data.password
   })
     .then((response) => {
-      localStorage.setItem('access-token', 'LGfHNRPkYqW4Bl8JNGatRA')
+      localStorage.setItem('access-token', token)
       history.push('projects');
       dispatch({
         type: types.RECEIVE_AUTH_DATA,
@@ -33,23 +37,12 @@ export function submitSignIn (data, dispatch) {
 }
 
 export const submitSignOut = () => (dispatch) => {
-  console.log('LOGOUT start');
-  const options = {
-    method: 'DELETE',
-    headers: { 'uid': 'admin@admin.com', 'client': 'gjApA_me_vqDessjBVo7_Q' },
-    url: 'auth/sign_out',
-  };
-  return client(options)
+  return axios_set.delete('auth/sign_out')
     .then((response) => {
       localStorage.removeItem('access-token')
       history.push('/sign-up');
       dispatch({
         type: types.USER_LOGOUT,
-        // payload: response.data.data
       });
     })
-    .catch((error) => {
-      console.log('LOGOUT error', error.response.data.errors[0]);
-      // throw new SubmissionError({ _error: error.response.data.errors[0] });
-    });
 };
