@@ -4,17 +4,15 @@ import * as types from './types';
 import axios_set from '../../service/axios_set';
 
 export function createProject (data, dispatch) {
-  console.log('createProject data', data);
   return axios_set.post('projects', {
-    'data': {
-      'type': 'projects',
-      'attributes': {
-        'name': 'data.name'
+      'data': {
+        'type': 'projects',
+        'attributes': {
+          'name': 'data.name'
+        }
       }
-    }
-  })
+    })
     .then((response) => {
-      console.log('createProject response', response);
       dispatch({
         type: types.PROJECT_IS_CREATED,
         // payload: response.data.data
@@ -27,6 +25,7 @@ export function createProject (data, dispatch) {
 }
 
 export function projectsList (dispatch) {
+  console.log('axios_set', axios_set);
   return axios_set.get('projects')
     .then((response) => {
       console.log('projectsList response', response.data.data);

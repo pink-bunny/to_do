@@ -3,8 +3,8 @@ import { SubmissionError } from 'redux-form';
 import * as types from './types';
 import axios_set from '../../service/axios_set';
 
-const token = 'yTaQN0i2kq-ZXWAPcmtxJA';
-const clientI = 'Ieh40mYK2wYxiCl2zVEpJg';
+const token = 'LaUDVfTTcfVe9cQEGmfvDg';
+const clientI = '9vvTnruJNfu8mantQso63w';
 const uid = 'com@com.com';
 
 export function submitSignUp (data) {
@@ -42,7 +42,7 @@ export const submitSignOut = () => (dispatch) => {
       localStorage.removeItem('access-token')
       history.push('/sign-up');
       dispatch({
-        type: types.USER_LOGOUT,
+        type: types.USER_LOGOUT
       });
     })
 };
