@@ -1,8 +1,6 @@
 import * as types from './types';
 
-const initialState = {
-  email: ''
-};
+const initialState = {};
 
 export default function friends(state = initialState, action) {
   switch (action.type) {

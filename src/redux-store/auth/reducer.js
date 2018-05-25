@@ -11,6 +11,11 @@ export default function friends(state = initialState, action) {
         ...action.payload
       };
 
+    case types.USER_LOGOUT:
+      return {
+        ...initialState
+      };
+
     default:
       return state;
   }

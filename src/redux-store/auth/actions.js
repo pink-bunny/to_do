@@ -1,4 +1,5 @@
 import history from '../../history';
+import axios from 'axios';
 import { SubmissionError } from 'redux-form';
 import * as types from './types';
 import axios_set from '../../service/axios_set';
@@ -24,6 +25,8 @@ export function submitSignIn (data, dispatch) {
     password: data.password
   })
     .then((response) => {
+      axios.head("/", { params: {"foo": "bar"}}) .then(response => console.info("headers:", response.headers));
+      console.log('submitSignIn response', response.headers);
       localStorage.setItem('access-token', token)
       history.push('projects');
       dispatch({
