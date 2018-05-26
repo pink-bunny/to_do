@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import { Form, Button } from 'react-bootstrap';
 // import InputField from './InputField';
 import DeleteModal from './DeleteModal';
@@ -51,7 +52,7 @@ class ProjectItem extends Component {
           <div className="project-info__header">
             <p className="project-info__title" onClick={this.toggle}>
               <span className="project-info__title-icon  icon icon-arrow-up" />
-              My first to do list
+              {this.props.projectsList.attributes.name}
             </p>
             <div className="project-info__actions">
               <span className="align-middle d-inline-block mb-5 mr-5" onClick={this.edit}>Edit</span>
@@ -67,5 +68,9 @@ class ProjectItem extends Component {
     );
   }
 }
+
+ProjectItem.propTypes = {
+  projectsList: PropTypes.object
+};
 
 export default ProjectItem;
