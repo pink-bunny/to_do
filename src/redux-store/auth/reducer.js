@@ -1,6 +1,8 @@
 import * as types from './types';
 
-const initialState = {};
+const initialState = {
+  isLoggedIn: false
+};
 
 export default function friends(state = initialState, action) {
   switch (action.type) {
@@ -8,12 +10,14 @@ export default function friends(state = initialState, action) {
     case types.RECEIVE_AUTH_DATA:
       return {
         ...state,
-        ...action.payload
+        ...action.payload,
+        isLoggedIn: true
       };
 
     case types.USER_LOGOUT:
       return {
-        ...initialState
+        ...initialState,
+        isLoggedIn: false
       };
 
     default:

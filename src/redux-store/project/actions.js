@@ -1,10 +1,9 @@
 import history from '../../history';
-import { SubmissionError } from 'redux-form';
+import { reset } from 'redux-form';
 import * as types from './types';
 import axios_set from '../../service/axios_set';
 
 export function createProject (data, dispatch) {
-  console.log('DSIPA 0', dispatch);
   return axios_set.post('projects', {
     'data': {
       'type': 'projects',
@@ -13,11 +12,11 @@ export function createProject (data, dispatch) {
       }
     }
   })
-    .then((response) => {
+    .then(() => {
       dispatch({
         type: types.PROJECT_IS_CREATED,
-        // payload: response.data.data
       });
+      dispatch(reset('createProjectForm'));
     })
     .catch((error) => {
       console.log('createProject error', error.response);
@@ -25,21 +24,16 @@ export function createProject (data, dispatch) {
     });
 }
 
-export function projectsList (data, dispatch) {
-  console.log('DSIPA 1', dispatch);
-  console.log('axios_set', axios_set);
-  return axios_set.get('projects')
-    .then((response) => {
-      console.log('projectsList response', response.data.data);
-      console.log('DSIPA', dispatch);
-      dispatch({
-        type: types.PROJECTS_LIST_RECEIVED,
-        payload: response.data.data
+export function projectsList () {
+  return function (dispatch) {
+    axios_set.get('projects')
+      .then((response) => {
+        dispatch({
+          type: types.PROJECTS_LIST_RECEIVED,
+          payload: {
+            list: response.data.data
+          }
+        });
       });
-      console.log('projectsList end');
-    })
-    .catch((error) => {
-      console.log('projectsList error', error.response);
-      // throw new SubmissionError({ _error: error.response.data.errors[0] });
-    });
+  };
 }

@@ -26,7 +26,7 @@ const Header = (props) => (
           </button>
           <button
             className="mb-5"
-            onClick={props.fetchProjects}
+            onClick={props.projectsList}
           >
             Fetch projects
           </button>
@@ -38,7 +38,7 @@ const Header = (props) => (
 
 const mapDispatchToProps = {
   logOutUser: submitSignOut,
-  fetchProjects: projectsList,
+  projectsList
 };
 
 

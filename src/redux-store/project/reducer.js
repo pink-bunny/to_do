@@ -1,6 +1,8 @@
 import * as types from './types';
 
-const initialState = {};
+const initialState = {
+  list: []
+};
 
 export default function friends(state = initialState, action) {
   switch (action.type) {
@@ -14,8 +16,7 @@ export default function friends(state = initialState, action) {
     case types.PROJECTS_LIST_RECEIVED:
       return {
         ...state,
-        // projects: action.payload.projects
-        ...action.payload
+        list: action.payload.list
       };
 
     default:
