@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import { Alert, Col, Form , Button} from 'react-bootstrap';
-import { submitSignUp } from '../redux-store/task/actions';
+import { submitSignUp } from '../redux-store/auth/actions';
 import InputField from '../components/InputField';
 import { minLength8, email, passwordConfirm } from '../utils/validation';
 import { objToArray } from '../utils/helpers';

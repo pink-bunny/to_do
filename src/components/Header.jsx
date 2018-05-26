@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import logo from '../images/logo.svg';
-import { submitSignOut } from '../redux-store/task/actions';
+import { submitSignOut } from '../redux-store/auth/actions';
+import { projectsList } from '../redux-store/project/actions';
 
 const Header = (props) => (
   <header className="main-header">
@@ -23,6 +24,12 @@ const Header = (props) => (
           >
             Exit
           </button>
+          <button
+            className="mb-5"
+            onClick={props.projectsList}
+          >
+            Fetch projects
+          </button>
         </div>
       </div>
     </div>
@@ -30,7 +37,8 @@ const Header = (props) => (
 );
 
 const mapDispatchToProps = {
-  logOutUser: submitSignOut
+  logOutUser: submitSignOut,
+  projectsList
 };
 
 
