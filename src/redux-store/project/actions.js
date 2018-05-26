@@ -1,4 +1,4 @@
-import history from '../../history';
+// import history from '../../history';
 import { reset } from 'redux-form';
 import * as types from './types';
 import axios_set from '../../service/axios_set';
@@ -36,4 +36,13 @@ export function projectsList () {
         });
       });
   };
+}
+
+export function deleteProject (id, dispatch) {
+  return axios_set.delete(`projects/${id}`)
+    .then(() => {
+      dispatch({
+        type: types.PROJECTS_IS_DELETED
+      });
+    });
 }

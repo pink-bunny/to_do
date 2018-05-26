@@ -19,6 +19,11 @@ export default function friends(state = initialState, action) {
         list: action.payload.list
       };
 
+    case types.PROJECTS_IS_DELETED:
+      return {
+        ...state
+      };
+
     default:
       return state;
   }

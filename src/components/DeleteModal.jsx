@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Modal, Button } from 'react-bootstrap';
 
 class DeleteModal extends Component {
@@ -21,7 +22,7 @@ class DeleteModal extends Component {
 
   render() {
     return (
-      <div className="align-middle d-inline-block mb-5">
+      <div className="align-middle d-inline-block mb-5 cursor-pointer">
         <span onClick={this.open}>
           Delete
         </span>
@@ -39,7 +40,12 @@ class DeleteModal extends Component {
             </p>
           </Modal.Body>
           <Modal.Footer>
-            <Button bsStyle="primary">Delete</Button>
+            <Button
+              onClick={this.props.modalSuccessAction}
+              bsStyle="primary"
+            >
+              Delete
+            </Button>
             <Button bsStyle="default" onClick={this.close}>Cancel</Button>
           </Modal.Footer>
         </Modal>
@@ -47,5 +53,13 @@ class DeleteModal extends Component {
     );
   }
 }
+
+DeleteModal.propTypes = {
+  modalSuccessAction: PropTypes.func.isRequired
+};
+
+DeleteModal.defaultProps = {
+  modalSuccessAction: () => null
+};
 
 export default DeleteModal;

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Form, Button } from 'react-bootstrap';
 // import InputField from './InputField';
 import DeleteModal from './DeleteModal';
+import { deleteProject } from '../redux-store/project/actions';
 // import ProjectTaskList from 'components/project/ProjectTaskList';
 
 class ProjectItem extends Component {
@@ -55,8 +56,10 @@ class ProjectItem extends Component {
               {this.props.projectsList.attributes.name}
             </p>
             <div className="project-info__actions">
-              <span className="align-middle d-inline-block mb-5 mr-5" onClick={this.edit}>Edit</span>
-              <DeleteModal />
+              <span className="align-middle d-inline-block cursor-pointer mb-5 mr-5" onClick={this.edit}>Edit</span>
+              <DeleteModal
+                modalSuccessAction={() => deleteProject(this.props.projectsList.id)}
+              />
             </div>
           </div>
           <div className="project-info__body">
