@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Field, reduxForm } from 'redux-form';
 import { Form, Button } from 'react-bootstrap';
-// import InputField from './InputField';
+import InputField from './InputField';
 import DeleteModal from './DeleteModal';
 import { deleteProject } from '../redux-store/project/actions';
 // import ProjectTaskList from 'components/project/ProjectTaskList';
@@ -40,11 +42,16 @@ class ProjectItem extends Component {
   }
 
   render(){
+    const project_name = this.props.projectsList.attributes.name
     return(
       <div className={classNames('project', this.state.projectClass)}>
         <div className="project-edit">
           <Form>
-            {/* <InputField /> */}
+            <Field
+              name="name"
+              component={InputField}
+              defaultValue="aaa"
+            />
             <Button bsStyle="primary" className="mb-5 mr-5">Save</Button>
             <Button bsStyle="default" className="mb-5 mr-5" onClick={this.closeEdit}>Cancel</Button>
           </Form>
@@ -53,10 +60,15 @@ class ProjectItem extends Component {
           <div className="project-info__header">
             <p className="project-info__title" onClick={this.toggle}>
               <span className="project-info__title-icon  icon icon-arrow-up" />
-              {this.props.projectsList.attributes.name}
+              {project_name}
             </p>
             <div className="project-info__actions">
-              <span className="align-middle d-inline-block cursor-pointer mb-5 mr-5" onClick={this.edit}>Edit</span>
+              <span
+                className="align-middle d-inline-block cursor-pointer mb-5 mr-5"
+                onClick={this.edit}
+              >
+                Edit
+              </span>
               <DeleteModal
                 modalSuccessAction={() => deleteProject(this.props.projectsList.id)}
               />
@@ -76,4 +88,6 @@ ProjectItem.propTypes = {
   projectsList: PropTypes.object
 };
 
-export default ProjectItem;
+export default connect()(reduxForm({
+  form: 'editProjectNameForm'
+})(ProjectItem));

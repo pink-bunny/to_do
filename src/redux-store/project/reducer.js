@@ -24,6 +24,11 @@ export default function friends(state = initialState, action) {
         ...state
       };
 
+    case types.PROJECTS_IS_EDITED:
+      return {
+        ...state
+      };
+
     default:
       return state;
   }

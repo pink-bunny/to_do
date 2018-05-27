@@ -4,8 +4,8 @@ import { SubmissionError } from 'redux-form';
 import * as types from './types';
 import axios_set from '../../service/axios_set';
 
-const token = 'xxrdqBN3cGLKPC4FRfU4hQ';
-const clientI = 'Ahd7pr433-0eyi96ENiw_Q';
+const token = 'CekdTYb1zeZEs4PnA1p0uw';
+const clientI = '7-sECuS79KDCKj5grGx0Vw';
 const uid = 'admin@admin.com';
 
 export function submitSignUp (data) {

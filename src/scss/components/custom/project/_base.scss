@@ -39,7 +39,7 @@ $project-indent-right:  $main-padding-horizontal-base;
 }
 .project-info__title {
   flex-grow: 1;
-  padding: 8px $project-indent-right 4px $project-indent-left;
+  padding: 8px $project-indent-right 4px $project-indent-right;
   line-height: 1.7;
   font-weight: 700;
   cursor: pointer;

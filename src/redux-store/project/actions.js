@@ -46,3 +46,12 @@ export function deleteProject (id, dispatch) {
       });
     });
 }
+
+export function editProject (id, dispatch) {
+  return axios_set.patch(`projects/${id}`)
+    .then(() => {
+      dispatch({
+        type: types.PROJECTS_IS_EDITED
+      });
+    });
+}
