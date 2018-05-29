@@ -42,7 +42,6 @@ class ProjectItem extends Component {
   }
 
   render(){
-    const project_name = this.props.projectsList.attributes.name
     return(
       <div className={classNames('project', this.state.projectClass)}>
         <div className="project-edit">
@@ -60,7 +59,7 @@ class ProjectItem extends Component {
           <div className="project-info__header">
             <p className="project-info__title" onClick={this.toggle}>
               <span className="project-info__title-icon  icon icon-arrow-up" />
-              {project_name}
+              { this.props.project.attributes.name }
             </p>
             <div className="project-info__actions">
               <span
@@ -70,7 +69,7 @@ class ProjectItem extends Component {
                 Edit
               </span>
               <DeleteModal
-                modalSuccessAction={() => deleteProject(this.props.projectsList.id)}
+                modalSuccessAction={() => deleteProject(this.props.project.id)}
               />
             </div>
           </div>
@@ -85,7 +84,7 @@ class ProjectItem extends Component {
 }
 
 ProjectItem.propTypes = {
-  projectsList: PropTypes.object
+  project: PropTypes.object
 };
 
 export default connect()(reduxForm({

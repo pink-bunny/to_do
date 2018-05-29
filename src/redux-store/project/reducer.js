@@ -4,7 +4,7 @@ const initialState = {
   list: []
 };
 
-export default function friends(state = initialState, action) {
+export default function project(state = initialState, action) {
   switch (action.type) {
 
     case types.PROJECT_IS_CREATED:

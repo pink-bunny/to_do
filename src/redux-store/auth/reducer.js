@@ -4,7 +4,7 @@ const initialState = {
   isLoggedIn: false
 };
 
-export default function friends(state = initialState, action) {
+export default function auth(state = initialState, action) {
   switch (action.type) {
 
     case types.RECEIVE_AUTH_DATA:

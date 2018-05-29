@@ -5,12 +5,12 @@ const instance = axios.create({
 });
 
 let AUTH_TOKEN = function() {
-  return 'CekdTYb1zeZEs4PnA1p0uw ';
+  return 'dYdRQduywxO2zRAl1i0kSw ';
   // return localStorage.getItem('access-token')
 };
 
 instance.defaults.headers.common['access-token'] = AUTH_TOKEN();
-instance.defaults.headers.common['client'] = '7-sECuS79KDCKj5grGx0Vw';
+instance.defaults.headers.common['client'] = 'hSwiMe2VyRpY0AQWzf2qFA';
 instance.defaults.headers.common['uid'] = 'admin@admin.com';
 
 export default instance;
