@@ -39,12 +39,16 @@ export function projectsList () {
 }
 
 export function deleteProject (id, dispatch) {
-  return axios_set.delete(`projects/${id}`)
-    .then(() => {
+  return function (dispatch) {
+    axios_set.delete(`projects/${id}`)
+    .then((response) => {
       dispatch({
-        type: types.PROJECTS_IS_DELETED
+        type: types.PROJECTS_IS_DELETED,
+        payload: id
       });
     });
+  }
+
 }
 
 export function editProject (id, dispatch) {

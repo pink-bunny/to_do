@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Modal, Button } from 'react-bootstrap';
+import { deleteProject } from '../redux-store/project/actions';
 
 class DeleteModal extends Component {
   constructor() {
@@ -41,7 +43,10 @@ class DeleteModal extends Component {
           </Modal.Body>
           <Modal.Footer>
             <Button
-              onClick={this.props.modalSuccessAction}
+              onClick={() => {
+                this.props.deleteProject(this.props.id);
+                this.close();
+              }}
               bsStyle="primary"
             >
               Delete
@@ -54,12 +59,8 @@ class DeleteModal extends Component {
   }
 }
 
-DeleteModal.propTypes = {
-  modalSuccessAction: PropTypes.func.isRequired
-};
+const mapDispatchToProps = {
+  deleteProject
+}
 
-DeleteModal.defaultProps = {
-  modalSuccessAction: () => null
-};
-
-export default DeleteModal;
+export default connect(null, mapDispatchToProps)(DeleteModal);

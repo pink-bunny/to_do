@@ -5,6 +5,7 @@ const initialState = {
 };
 
 export default function project(state = initialState, action) {
+  console.log('state', state);
   switch (action.type) {
 
     case types.PROJECT_IS_CREATED:
@@ -22,7 +23,8 @@ export default function project(state = initialState, action) {
     case types.PROJECTS_IS_DELETED:
       return {
         ...state
-      };
+      }
+      // return state.list.filter(({ id }) => id !== action.payload);
 
     case types.PROJECTS_IS_EDITED:
       return {

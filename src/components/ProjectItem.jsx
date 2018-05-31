@@ -6,7 +6,6 @@ import { Field, reduxForm } from 'redux-form';
 import { Form, Button } from 'react-bootstrap';
 import InputField from './InputField';
 import DeleteModal from './DeleteModal';
-import { deleteProject } from '../redux-store/project/actions';
 // import ProjectTaskList from 'components/project/ProjectTaskList';
 
 class ProjectItem extends Component {
@@ -68,9 +67,7 @@ class ProjectItem extends Component {
               >
                 Edit
               </span>
-              <DeleteModal
-                modalSuccessAction={() => deleteProject(this.props.project.id)}
-              />
+              <DeleteModal id={ this.props.project.id } />
             </div>
           </div>
           <div className="project-info__body">
