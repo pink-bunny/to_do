@@ -48,7 +48,7 @@ export function deleteProject (id, dispatch) {
           payload: id
         });
       });
-  }
+  };
 }
 
 export function editProject (id, dispatch) {

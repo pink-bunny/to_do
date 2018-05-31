@@ -21,9 +21,9 @@ export default function project(state = initialState, action) {
 
     case types.PROJECTS_IS_DELETED:
       return {
-        ...state
+        ...state,
+        list: state.list.filter(({ id }) => id != action.payload)
       };
-      // return state.list.filter(({ id }) => id !== action.payload);
 
     case types.PROJECTS_IS_EDITED:
       return {

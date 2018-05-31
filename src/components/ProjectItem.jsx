@@ -48,7 +48,6 @@ class ProjectItem extends Component {
             <Field
               name="name"
               component={InputField}
-              defaultValue="aaa"
             />
             <Button bsStyle="primary" className="mb-5 mr-5">Save</Button>
             <Button bsStyle="default" className="mb-5 mr-5" onClick={this.closeEdit}>Cancel</Button>
@@ -84,6 +83,14 @@ ProjectItem.propTypes = {
   project: PropTypes.object
 };
 
-export default connect()(reduxForm({
+const mapStateToProps = (state, ownProps) => {
+  return ({
+    initialValues: {
+      name: ownProps.project.attributes.name
+    },
+  });
+};
+
+export default connect(mapStateToProps)(reduxForm({
   form: 'editProjectNameForm'
 })(ProjectItem));
