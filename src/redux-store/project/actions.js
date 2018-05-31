@@ -12,9 +12,10 @@ export function createProject (data, dispatch) {
       }
     }
   })
-    .then(() => {
+    .then((response) => {
       dispatch({
         type: types.PROJECT_IS_CREATED,
+        payload: response.data.data
       });
       dispatch(reset('createProjectForm'));
     })
@@ -41,14 +42,13 @@ export function projectsList () {
 export function deleteProject (id, dispatch) {
   return function (dispatch) {
     axios_set.delete(`projects/${id}`)
-    .then((response) => {
-      dispatch({
-        type: types.PROJECTS_IS_DELETED,
-        payload: id
+      .then(() => {
+        dispatch({
+          type: types.PROJECTS_IS_DELETED,
+          payload: id
+        });
       });
-    });
   }
-
 }
 
 export function editProject (id, dispatch) {
