@@ -6,7 +6,7 @@ import { Field, reduxForm } from 'redux-form';
 import { Form, Button } from 'react-bootstrap';
 import InputField from './InputField';
 import DeleteModal from './DeleteModal';
-// import ProjectTaskList from 'components/project/ProjectTaskList';
+import { editProject } from '../redux-store/project/actions';
 
 class ProjectItem extends Component {
   constructor() {
@@ -44,12 +44,12 @@ class ProjectItem extends Component {
     return(
       <div className={classNames('project', this.state.projectClass)}>
         <div className="project-edit">
-          <Form>
+          <Form onSubmit={this.props.handleSubmit(editProject)}>
             <Field
               name="name"
               component={InputField}
             />
-            <Button bsStyle="primary" className="mb-5 mr-5">Save</Button>
+            <Button type="submit" bsStyle="primary" className="mb-5 mr-5">Save</Button>
             <Button bsStyle="default" className="mb-5 mr-5" onClick={this.closeEdit}>Cancel</Button>
           </Form>
         </div>
@@ -58,6 +58,8 @@ class ProjectItem extends Component {
             <p className="project-info__title" onClick={this.toggle}>
               <span className="project-info__title-icon  icon icon-arrow-up" />
               { this.props.project.attributes.name }
+              <br />
+              { this.props.project.id }
             </p>
             <div className="project-info__actions">
               <span
@@ -70,9 +72,9 @@ class ProjectItem extends Component {
             </div>
           </div>
           <div className="project-info__body">
-            Hello
-            {/* <ProjectTaskList /> */}
+            Here will be some info about current project.
           </div>
+          {console.log('initialValues', this.props.initialValues.name)}
         </div>
       </div>
     );
@@ -80,7 +82,8 @@ class ProjectItem extends Component {
 }
 
 ProjectItem.propTypes = {
-  project: PropTypes.object
+  project: PropTypes.object,
+  handleSubmit: PropTypes.func
 };
 
 const mapStateToProps = (state, ownProps) => {

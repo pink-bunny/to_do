@@ -25,10 +25,10 @@ export default function project(state = initialState, action) {
         list: state.list.filter(({ id }) => id != action.payload)
       };
 
-    case types.PROJECTS_IS_EDITED:
-      return {
-        ...state
-      };
+    // case types.PROJECTS_IS_EDITED:
+    //   return {
+    //     ...state
+    //   };
 
     default:
       return state;

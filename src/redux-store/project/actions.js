@@ -39,7 +39,7 @@ export function projectsList () {
   };
 }
 
-export function deleteProject (id, dispatch) {
+export function deleteProject (id) {
   return function (dispatch) {
     axios_set.delete(`projects/${id}`)
       .then(() => {
@@ -51,11 +51,23 @@ export function deleteProject (id, dispatch) {
   };
 }
 
-export function editProject (id, dispatch) {
-  return axios_set.patch(`projects/${id}`)
+export function editProject (data, dispatch, props) {
+  return axios_set.patch(`projects/${props.project.id}`, {
+    'data': {
+      'id': props.project.id,
+      'type': 'projects',
+      'attributes': {
+        'name': data.name
+      }
+    }
+  })
     .then(() => {
       dispatch({
         type: types.PROJECTS_IS_EDITED
       });
+      dispatch(projectsList());
+    })
+    .catch((error) => {
+      console.log('createProject error', error.response);
     });
 }
