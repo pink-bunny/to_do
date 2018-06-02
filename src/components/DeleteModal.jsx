@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Modal, Button } from 'react-bootstrap';
+import { deleteProject } from '../redux-store/project/actions';
 
 class DeleteModal extends Component {
   constructor() {
@@ -21,7 +24,7 @@ class DeleteModal extends Component {
 
   render() {
     return (
-      <div className="align-middle d-inline-block mb-5">
+      <div className="align-middle d-inline-block mb-5 cursor-pointer">
         <span onClick={this.open}>
           Delete
         </span>
@@ -39,7 +42,15 @@ class DeleteModal extends Component {
             </p>
           </Modal.Body>
           <Modal.Footer>
-            <Button bsStyle="primary">Delete</Button>
+            <Button
+              onClick={() => {
+                this.props.deleteProject(this.props.id);
+                this.close();
+              }}
+              bsStyle="primary"
+            >
+              Delete
+            </Button>
             <Button bsStyle="default" onClick={this.close}>Cancel</Button>
           </Modal.Footer>
         </Modal>
@@ -48,4 +59,8 @@ class DeleteModal extends Component {
   }
 }
 
-export default DeleteModal;
+const mapDispatchToProps = {
+  deleteProject
+}
+
+export default connect(null, mapDispatchToProps)(DeleteModal);

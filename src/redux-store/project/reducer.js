@@ -4,13 +4,13 @@ const initialState = {
   list: []
 };
 
-export default function friends(state = initialState, action) {
+export default function project(state = initialState, action) {
   switch (action.type) {
 
     case types.PROJECT_IS_CREATED:
       return {
         ...state,
-        ...action.payload
+        list: state.list.concat(action.payload)
       };
 
     case types.PROJECTS_LIST_RECEIVED:
@@ -18,6 +18,17 @@ export default function friends(state = initialState, action) {
         ...state,
         list: action.payload.list
       };
+
+    case types.PROJECTS_IS_DELETED:
+      return {
+        ...state,
+        list: state.list.filter(({ id }) => id != action.payload)
+      };
+
+    // case types.PROJECTS_IS_EDITED:
+    //   return {
+    //     ...state
+    //   };
 
     default:
       return state;

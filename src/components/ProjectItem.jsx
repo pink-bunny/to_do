@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Field, reduxForm } from 'redux-form';
 import { Form, Button } from 'react-bootstrap';
-// import InputField from './InputField';
+import InputField from './InputField';
 import DeleteModal from './DeleteModal';
-// import ProjectTaskList from 'components/project/ProjectTaskList';
+import { editProject } from '../redux-store/project/actions';
 
 class ProjectItem extends Component {
   constructor() {
@@ -41,9 +44,12 @@ class ProjectItem extends Component {
     return(
       <div className={classNames('project', this.state.projectClass)}>
         <div className="project-edit">
-          <Form>
-            {/* <InputField /> */}
-            <Button bsStyle="primary" className="mb-5 mr-5">Save</Button>
+          <Form onSubmit={this.props.handleSubmit(editProject)}>
+            <Field
+              name="name"
+              component={InputField}
+            />
+            <Button type="submit" bsStyle="primary" className="mb-5 mr-5">Save</Button>
             <Button bsStyle="default" className="mb-5 mr-5" onClick={this.closeEdit}>Cancel</Button>
           </Form>
         </div>
@@ -51,21 +57,43 @@ class ProjectItem extends Component {
           <div className="project-info__header">
             <p className="project-info__title" onClick={this.toggle}>
               <span className="project-info__title-icon  icon icon-arrow-up" />
-              My first to do list
+              { this.props.project.attributes.name }
+              <br />
+              { this.props.project.id }
             </p>
             <div className="project-info__actions">
-              <span className="align-middle d-inline-block mb-5 mr-5" onClick={this.edit}>Edit</span>
-              <DeleteModal />
+              <span
+                className="align-middle d-inline-block cursor-pointer mb-5 mr-5"
+                onClick={this.edit}
+              >
+                Edit
+              </span>
+              <DeleteModal id={ this.props.project.id } />
             </div>
           </div>
           <div className="project-info__body">
-            Hello
-            {/* <ProjectTaskList /> */}
+            Here will be some info about current project.
           </div>
+          {console.log('initialValues', this.props.initialValues.name)}
         </div>
       </div>
     );
   }
 }
 
-export default ProjectItem;
+ProjectItem.propTypes = {
+  project: PropTypes.object,
+  handleSubmit: PropTypes.func
+};
+
+const mapStateToProps = (state, ownProps) => {
+  return ({
+    initialValues: {
+      name: ownProps.project.attributes.name
+    },
+  });
+};
+
+export default connect(mapStateToProps)(reduxForm({
+  form: 'editProjectNameForm'
+})(ProjectItem));
