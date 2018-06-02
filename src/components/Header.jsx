@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import logo from '../images/logo.svg';
 import { submitSignOut } from '../redux-store/auth/actions';
@@ -36,10 +37,14 @@ const Header = (props) => (
   </header>
 );
 
+Header.propTypes = {
+  logOutUser: PropTypes.func,
+  projectsList: PropTypes.func
+};
+
 const mapDispatchToProps = {
   logOutUser: submitSignOut,
   projectsList
 };
-
 
 export default connect(null, mapDispatchToProps)(Header);

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Alert, Col, Form, Button} from 'react-bootstrap';
 import InputField from '../components/InputField';
@@ -40,7 +41,12 @@ const SignIn = props => (
       </Col>
     </div>
   </div>
-)
+);
+
+SignIn.propTypes = {
+  formHasError: PropTypes.bool,
+  handleSubmit: PropTypes.func
+};
 
 const mapStateToProps = (state) => ({
   formHasError: state.form.signInForm && state.form.signInForm.error,

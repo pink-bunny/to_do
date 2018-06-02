@@ -59,8 +59,13 @@ class DeleteModal extends Component {
   }
 }
 
+DeleteModal.propTypes = {
+  deleteProject: PropTypes.func,
+  id: PropTypes.string
+};
+
 const mapDispatchToProps = {
   deleteProject
-}
+};
 
 export default connect(null, mapDispatchToProps)(DeleteModal);
