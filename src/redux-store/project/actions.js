@@ -1,4 +1,3 @@
-// import history from '../../history';
 import { reset } from 'redux-form';
 import * as types from './types';
 import axios_set from '../../service/axios_set';

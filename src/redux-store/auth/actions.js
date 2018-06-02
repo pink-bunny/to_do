@@ -1,12 +1,9 @@
 import history from '../../history';
-import axios from 'axios';
 import { SubmissionError } from 'redux-form';
 import * as types from './types';
 import axios_set from '../../service/axios_set';
 
 const token = 'CekdTYb1zeZEs4PnA1p0uw';
-const clientI = '7-sECuS79KDCKj5grGx0Vw';
-const uid = 'admin@admin.com';
 
 export function submitSignUp (data) {
   return axios_set.post('auth', {
