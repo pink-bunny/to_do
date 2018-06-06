@@ -18,10 +18,6 @@ export function createProject (data, dispatch) {
       });
       dispatch(reset('createProjectForm'));
     })
-    .catch((error) => {
-      console.log('createProject error', error.response);
-      // throw new SubmissionError({ _error: error.response.data.errors[0] });
-    });
 }
 
 export function projectsList () {
@@ -68,8 +64,5 @@ export function editProject (data, dispatch, props) {
           project: response.data.data
         }
       });
-    })
-    .catch((error) => {
-      console.log('createProject error', error.response);
     });
 }

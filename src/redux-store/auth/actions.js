@@ -3,8 +3,6 @@ import { SubmissionError } from 'redux-form';
 import * as types from './types';
 import axios_set from '../../service/axios_set';
 
-const token = 'CekdTYb1zeZEs4PnA1p0uw';
-
 export function submitSignUp (data) {
   return axios_set.post('auth', {
     email: data.email,
@@ -22,7 +20,7 @@ export function submitSignIn (data, dispatch) {
     password: data.password
   })
     .then((response) => {
-      localStorage.setItem('access-token', token);
+      localStorage.setItem('access-token', 'here will be access-token');
       history.push('projects');
       dispatch({
         type: types.RECEIVE_AUTH_DATA,

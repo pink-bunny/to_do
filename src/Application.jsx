@@ -12,11 +12,11 @@ const Application = () =>
   <div>
     <Header />
     <div className="page-container">
-      <div className="container">
-        <Link to="sign-in">Sign in</Link>
-        <br/>
-        <Link to="sign-up">Sign up</Link>
-      </div>
+      { !localStorage.getItem('access-token') &&
+        <div className="container text-center">
+          <Link to="sign-up">Sign up</Link>
+        </div>
+      }
       <Route path="/sign-up" component={ SignUp } />
       <Route path="/sign-in" component={ SignIn } />
       <Route path="/projects" component={ Projects } />
