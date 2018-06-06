@@ -60,11 +60,14 @@ export function editProject (data, dispatch, props) {
       }
     }
   })
-    .then(() => {
+    .then((response) => {
       dispatch({
-        type: types.PROJECTS_IS_EDITED
+        type: types.PROJECTS_IS_EDITED,
+        payload: {
+          id: props.project.id,
+          project: response.data.data
+        }
       });
-      dispatch(projectsList());
     })
     .catch((error) => {
       console.log('createProject error', error.response);
