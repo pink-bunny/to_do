@@ -58,8 +58,6 @@ class ProjectItem extends Component {
             <p className="project-info__title" onClick={this.toggle}>
               <span className="project-info__title-icon  icon icon-arrow-up" />
               { this.props.project.attributes.name }
-              <br />
-              { this.props.project.id }
             </p>
             <div className="project-info__actions">
               <span
@@ -74,7 +72,6 @@ class ProjectItem extends Component {
           <div className="project-info__body">
             Here will be some info about current project.
           </div>
-          {console.log('initialValues', this.props.initialValues.name)}
         </div>
       </div>
     );
@@ -90,10 +87,10 @@ const mapStateToProps = (state, ownProps) => {
   return ({
     initialValues: {
       name: ownProps.project.attributes.name
-    },
+    }
   });
 };
 
 export default connect(mapStateToProps)(reduxForm({
-  form: 'editProjectNameForm'
+  form: 'random name'
 })(ProjectItem));

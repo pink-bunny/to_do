@@ -10,7 +10,7 @@ const Projects = (props) => (
       <Col sm={8} smOffset={2}>
         <h2>Projects</h2>
         { props.projects.map((project, index) => (
-          <ProjectItem project={project} key={index} />
+          <ProjectItem project={project} key={index} form={`editProjectInfo${project.id}`} />
         )) }
         <CreateProjectForm />
       </Col>
